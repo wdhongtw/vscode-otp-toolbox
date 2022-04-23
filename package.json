@@ -3,11 +3,19 @@
 	"displayName": "OTP Toolbox",
 	"description": "Generate TOTP tokens.",
 	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wdhongtw/vscode-otp-toolbox"
+	},
 	"engines": {
 		"vscode": "^1.66.0"
 	},
 	"categories": [
 		"Other"
+	],
+	"keywords": [
+		"otp",
+		"totp"
 	],
 	"activationEvents": [
 		"onCommand:otp-toolbox.addKey",
@@ -16,7 +24,7 @@
 		"onCommand:otp-toolbox.debug",
 		"onCommand:otp-toolbox.helloWorld"
 	],
-	"main": "./out/extension.js",
+	"main": "./out/main.js",
 	"contributes": {
 		"commands": [
 			{
@@ -42,7 +50,11 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
+		"vscode:prepublish": "npm run esbuild-base -- --minify",
+		"esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+		"esbuild": "npm run esbuild-base -- --sourcemap",
+		"esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+		"test-compile": "tsc -p ./",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
@@ -50,19 +62,19 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.66.0",
 		"@types/glob": "^7.2.0",
 		"@types/mocha": "^9.1.0",
 		"@types/node": "14.x",
+		"@types/vscode": "^1.66.0",
 		"@typescript-eslint/eslint-plugin": "^5.16.0",
 		"@typescript-eslint/parser": "^5.16.0",
+		"@vscode/test-electron": "^2.1.3",
+		"esbuild": "^0.14.38",
 		"eslint": "^8.11.0",
 		"glob": "^7.2.0",
 		"mocha": "^9.2.2",
 		"typescript": "^4.5.5",
-		"@vscode/test-electron": "^2.1.3"
-	},
-	"dependencies": {
 		"otplib": "^12.0.1"
-	}
+	},
+	"dependencies": {}
 }
