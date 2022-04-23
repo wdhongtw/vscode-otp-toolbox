@@ -10,14 +10,34 @@
 		"Other"
 	],
 	"activationEvents": [
+		"onCommand:otp-toolbox.addKey",
+		"onCommand:otp-toolbox.clearKeys",
+		"onCommand:otp-toolbox.getToken",
+		"onCommand:otp-toolbox.debug",
 		"onCommand:otp-toolbox.helloWorld"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
+				"command": "otp-toolbox.addKey",
+				"title": "OTP Toolbox: Add Key"
+			},
+			{
+				"command": "otp-toolbox.clearKeys",
+				"title": "OTP Toolbox: Clear Keys"
+			},
+			{
+				"command": "otp-toolbox.getToken",
+				"title": "OTP Toolbox: Get Token"
+			},
+			{
+				"command": "otp-toolbox.debug",
+				"title": "OTP Toolbox: Debug"
+			},
+			{
 				"command": "otp-toolbox.helloWorld",
-				"title": "Hello World"
+				"title": "OTP Toolbox: Hello World"
 			}
 		]
 	},
@@ -41,5 +61,8 @@
 		"mocha": "^9.2.2",
 		"typescript": "^4.5.5",
 		"@vscode/test-electron": "^2.1.3"
+	},
+	"dependencies": {
+		"otplib": "^12.0.1"
 	}
 }
