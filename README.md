@@ -1,35 +1,34 @@
-# otp-toolbox README
+# OTP Toolbox
 
-This is the README for your extension "otp-toolbox". After writing up a brief description, we recommend including the following sections.
+Store your TOTP secrete and generate the code with one command.
+
+Like Google Authenticator or other Apps, but within VS Code.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+First, store the OTP key, e.g. `othauth://...`, with `OTP Toolbox: Add Key` command.
+The OTP key are usually given as a QR Code, find a QR Code scanner if necessary.
 
-For example if there is an image subfolder under your extension project workspace:
+Once some OTP key is stored, we can get the one time password with `OTP Toolbox: Get Token` command.
+The token will be send the the clipboard automatically and be shown through a information box.
 
-\!\[feature X\]\(images/feature-x.png\)
+For removing stored secrets, use `OTP Toolbox: Clear Keys`.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Security Details
 
-## Requirements
+On first launch of this extension, a random master key is generated.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+All stored OTP secrets is encrypted with this master key before saving into the disks.
+
+The master key is protected in a OS-dependent way. And for remote VS Code session,
+the secrete is stored in local OS.
+
+- [Secrets API · Issue #112249 · microsoft/vscode](https://github.com/microsoft/vscode/issues/112249)
+- [Supporting Remote Development and GitHub Codespaces | Visual Studio Code Extension API](https://code.visualstudio.com/api/advanced-topics/remote-extensions#persisting-secrets)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Currently no setting available to this extension.
 
 ## Release Notes
 
@@ -46,25 +45,3 @@ Fixed issue #.
 ### 1.1.0
 
 Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
